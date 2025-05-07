@@ -72,6 +72,20 @@ async function detectSign() {
   resultDisplay.textContent = predictedLetter;
   accuracyDisplay.textContent = (confidence * 100).toFixed(2) + "%";
 
+  // Draw frame if confidence > 0.7
+  ctx.lineWidth = 6;
+  if (confidence > 0.7) {
+    ctx.strokeStyle = '#00e676'; // green
+    ctx.shadowColor = '#00e676';
+    ctx.shadowBlur = 10;
+    ctx.strokeRect(12, 12, canvas.width - 24, canvas.height - 24);
+  } else {
+    // Clear frame (redraw image only)
+    ctx.shadowBlur = 0;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+  }
+
   if (isSoundEnabled) {
     const utter = new SpeechSynthesisUtterance(predictedLetter);
     speechSynthesis.speak(utter);

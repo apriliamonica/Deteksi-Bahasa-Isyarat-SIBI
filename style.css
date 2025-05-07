@@ -57,6 +57,16 @@ video {
   background: #000;
 }
 
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none;
+  z-index: 2;
+}
+
 .output {
   margin-bottom: 2rem;
 }
